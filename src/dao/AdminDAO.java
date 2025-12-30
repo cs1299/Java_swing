@@ -24,4 +24,14 @@ public class AdminDAO {
         }
         return null;
     }
+
+    public static void updatePassword(Integer id, String password) {
+        for(Object[] user : data) {
+            if(user[0].equals(id)) {
+                user[2] = password;
+                break;
+            }
+        }
+    }
+
 }

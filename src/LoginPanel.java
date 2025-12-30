@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 
 public class LoginPanel extends JPanel{
     static String dir = LoginPanel.class.getClassLoader().getResource("image").getPath();//取image文件夹路径
+    JPanel login_panel=null;
     public LoginPanel() {
         //相对于左上角的x、y
         this.setBounds(0, 0, SystemConstants.FRAME_WIDTH, SystemConstants.FRAME_HEIGHT);
@@ -74,7 +75,7 @@ public class LoginPanel extends JPanel{
         loginButton.setBorder(null);
         box.add(loginButton);
 
-        JPanel login_panel=null;
+
         loginButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -85,7 +86,9 @@ public class LoginPanel extends JPanel{
                 if(user == null || !user.getpassword().equals(password)) {
                     JOptionPane.showMessageDialog(loginButton.getParent(), "账号或密码错误","系统提示",JOptionPane.WARNING_MESSAGE);
                 }else {
-//                    System.out.println("登录成功");
+                    login_panel = new AdminPanel();
+                    MainFrame.setContent(login_panel);
+                    MainFrame.user=user;
                 }
             }
         });

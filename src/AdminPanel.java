@@ -19,18 +19,26 @@ public class AdminPanel extends JPanel{
         this.add(contentPanel,BorderLayout.CENTER);
 
         JMenu menu1 = new JMenu("题库管理");
-        JMenuItem add_item = new JMenuItem("添加题目");
-        JMenuItem delete_item = new JMenuItem("删除题目");
-        JMenuItem update_item = new JMenuItem("修改题目");
-        menu1.add(add_item);
-        menu1.add(delete_item);
-        menu1.add(update_item);
+        menu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mousePressed(java.awt.event.MouseEvent e) {
+                setContent(new DataTablePanel());
+            }
+        });
+
+
         JMenu menu2 = new JMenu("个人中心");
-        JMenuItem psdchange = new JMenuItem("修改密码");
+
         JMenuItem logout = new JMenuItem("退出登录");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mousePressed(java.awt.event.MouseEvent e) {
+                MainFrame.frame.setContentPane(new LoginPanel());
+                JOptionPane.showMessageDialog(MainFrame.frame, "退出成功，欢迎下次再来。","系统提示",JOptionPane.INFORMATION_MESSAGE);
+                }
+            });
 
-
-
+        JMenuItem psdchange = new JMenuItem("修改密码");
         psdchange.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mousePressed(java.awt.event.MouseEvent e) {
